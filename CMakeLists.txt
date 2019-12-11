@@ -5,8 +5,22 @@
 ## First start with some standard catkin stuff.
 cmake_minimum_required(VERSION 2.8.3)
 project(subt_rviz_plugins)
-find_package(catkin REQUIRED COMPONENTS rviz)
-catkin_package()
+find_package(catkin REQUIRED COMPONENTS rviz message_generation std_msgs)
+
+add_message_files(
+  FILES
+  BoolStamped.msg
+)
+
+generate_messages(
+  DEPENDENCIES
+  std_msgs
+)
+
+catkin_package(
+  CATKIN_DEPENDS message_runtime
+)
+
 include_directories(${catkin_INCLUDE_DIRS})
 link_directories(${catkin_LIBRARY_DIRS})
 
@@ -35,6 +49,8 @@ add_definitions(-DQT_NO_KEYWORDS)
 ## The generated MOC files are included automatically as headers.
 set(SRC_FILES
   src/point_laser_display.cpp
+  src/gas_visual.cpp
+  src/gas_display.cpp
 )
 
 ## An rviz plugin is just a shared library, so here we declare the
@@ -43,6 +59,8 @@ set(SRC_FILES
 ## is called) and specify the list of source files we collected above
 ## in ``${SRC_FILES}``.
 add_library(${PROJECT_NAME} ${SRC_FILES})
+
+add_dependencies(${PROJECT_NAME} ${${PROJECT_NAME}_EXPORTED_TARGETS})
 
 ## Link the myviz executable with whatever Qt libraries have been defined by
 ## the ``find_package(Qt4 ...)`` line above, or by the

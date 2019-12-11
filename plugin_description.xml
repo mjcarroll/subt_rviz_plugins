@@ -5,4 +5,10 @@
     <description>
     </description>
   </class>
+  <class name="subt_rviz_plugins/GasDisplay"
+         type="rviz_plugin_tutorials::GasDisplay"
+         base_class_type="rviz::Display">
+    <description>
+    </description>
+  </class>
 </library>
