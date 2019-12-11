@@ -1,0 +1,8 @@
+<library path="lib/libsubt_rviz_plugins">
+  <class name="subt_rviz_plugins/PointLaserDisplay"
+         type="rviz::PointLaserDisplay"
+         base_class_type="rviz::Display">
+    <description>
+    </description>
+  </class>
+</library>
